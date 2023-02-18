@@ -1,7 +1,6 @@
 import { FC, memo, useContext } from "react";
 import { Box } from "../ui-kit/Box";
 import { styled, theme } from '../global-styles'
-
 const Text = styled.div`
   border: 0;
   outline: 0;
@@ -12,12 +11,12 @@ const Text = styled.div`
   color: black;
 `
 
-const _Common: FC = () => {
+const _Calendar: FC = () => {
     return (
         <Box>
-            <Text>Общее</Text>
+            <Text>Календарь</Text>
         </Box>
     )
   }
 
-  export const Common = memo(_Common);
+  export const Calendar = memo(_Calendar);

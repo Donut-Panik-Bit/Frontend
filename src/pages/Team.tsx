@@ -11,12 +11,12 @@ const Text = styled.div`
   color: black;
 `
 
-const _About: FC = () => {
+const _Team: FC = () => {
     return (
         <Box>
-            <Text>О проекте</Text>
+            <Text>Команда</Text>
         </Box>
     )
   }
 
-  export const About = memo(_About);
+  export const Team = memo(_Team);

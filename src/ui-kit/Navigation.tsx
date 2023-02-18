@@ -1,16 +1,15 @@
 import { useState } from "react"
-import { useNavigate, Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import { styled, theme } from '../global-styles'
 import { Home } from "../pages/Home"
-import { Info } from "../pages/Info"
 import { paths } from '../utils/pages'
 
 const Sidebar = styled.div`
   margin: 0;
   padding: 0;
   height: 100%;
-  width: 400px;
+  width: 323px;
   background-color: white;
 `
 
@@ -18,18 +17,73 @@ const ItemBar = styled.div<{ isActive: boolean }>`
   cursor: pointer;
   display: flex;
   align-items: center;
+  
   height: 64px;
   gap: 8px;
   padding: 0 24px;
+  border-top: 1px solid ${theme.palette.border_color};
 
   background-color: ${({ isActive }) =>
-    isActive ? 'rgba(181, 193, 225, 0.3)' : 'white'};
+    isActive ? `${theme.palette.main}` : 'white'};
 
   transition: background ${theme.transition.hover}ms;
 
   &:hover {
-    background-color: rgba(181, 193, 225, 0.3);
+    background-color: ${theme.palette.main};
   }
+`
+
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  
+  height: 88px;
+  gap: 8px;
+  padding: 0 24px;
+  border-top: 1px solid ${theme.palette.border_color};
+
+  background-color: ${theme.palette.white};
+`
+
+const ProgresBox = styled.div`
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  
+  height: 100px;
+  gap: 8px;
+  padding: 0 24px;
+  border-top: 1px solid ${theme.palette.border_color};
+
+  background-color: ${theme.palette.white};
+`
+
+const ProgressText = styled.div`
+  border: 0;
+  outline: 0;
+  padding: 0;
+  margin-top: 20px;
+  background-color: transparent;
+  color:  ${theme.palette.main_text};
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+`
+const Progress = styled.progress`
+  background: ${theme.palette.grayLight};
+  height: 38px;
+  width: 100%;
+  border-radius: 10px;
+  ::-webkit-progress-bar {
+    background: ${theme.palette.grayLight};
+    border-radius: 10px;
+  }
+
+  ::-webkit-progress-value {
+    background: ${theme.palette.main};
+    border-radius: 10px;
+}
 `
 
 const Text = styled.div`
@@ -39,49 +93,83 @@ const Text = styled.div`
   margin: 0;
 
   background-color: transparent;
-  color: black;
+  color:  ${theme.palette.main_text};
   text-decoration: none !important;
 
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 46px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
 `
+const TextHeader = styled.div`
+  border: 0;
+  outline: 0;
+  padding: 0;
+  margin: 0;
 
+  background-color: transparent;
+  color:  ${theme.palette.main_text};
 
-
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+`
 
 const items = [
   {
-    label: 'Общее',
+    label: 'ОБЩЕЕ',
     path: paths.home
   },
   {
-    label: 'О проекте',
-    path: paths.info
+    label: 'О ПРОЕКТЕ',
+    path: paths.about
   },
   {
-    label: 'Команда',
-    path: paths.home
+    label: 'КОМАНДА',
+    path: paths.team
   },
   {
     label: 'РЕЗУЛЬТАТЫ',
-    path: paths.info
+    path: paths.results
   },
   {
     label: 'КАЛЕНДАРНЫЙ ПЛАН',
-    path: paths.home
+    path: paths.calendar
+  },
+  {
+    label: 'МЕДИА',
+    path: paths.media
+  },
+  {
+    label: 'СОФИНАНСИРОВАНИЕ',
+    path: paths.finance
+  },
+  {
+    label: 'ДОП.ФАЙЛЫ',
+    path: paths.files
+  },
+  {
+    label: 'РАСХОДЫ',
+    path: paths.expenses
   }
 ]
 
+const StyledNavLink = styled(NavLink)`
+    text-decoration: none;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
+
 export const Navigation = () => {
-  const navigate = useNavigate()
   const [panelBarIdx, setPanelBarIdx] = useState(0)
 
     return (
       <div>
         <Sidebar>
+          <Header><TextHeader>Разделы</TextHeader></Header>
           {items.map((el, i) => (
-            <Link to={el.path} style={{ textDecoration: 'none' }}>
+            <StyledNavLink to={el.path}  >
             <ItemBar
               isActive={i === panelBarIdx}
               onClick={() => setPanelBarIdx(i)}
@@ -91,8 +179,12 @@ export const Navigation = () => {
                 {el.label}
               </Text>
             </ItemBar>
-            </Link>
+            </StyledNavLink>
           ))}
+          <ProgresBox>
+            <ProgressText>ОБЩИЙ ПРОГРЕСС</ProgressText>
+            <Progress max={100} value={70}></Progress>
+          </ProgresBox>
         </Sidebar>
       </div>
     )

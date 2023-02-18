@@ -8,6 +8,8 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  margin: 80px 60px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.3);
 `
 const Content = styled.div`
   width: 100%;
