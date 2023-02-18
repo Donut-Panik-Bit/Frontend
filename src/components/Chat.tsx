@@ -188,7 +188,9 @@ const Divider = styled.div`
   border-radius: 20px;
 `;
 
-const Button = styled.button`
+const Button = styled.button<{
+  isActive?: boolean;
+}>`
   border: none;
   outline: none;
   width: 47px;
@@ -204,7 +206,14 @@ const Button = styled.button`
   svg {
     height: 20px;
     width: 20px;
+    scale: ${(props) => (props.isActive ? '1.1' : '1')};
   }
+`;
+
+const StyledMicroIcon = styled(MicroButtonIcon)<{
+  isActive: boolean;
+}>`
+  scale: ${(props) => (props.isActive ? '1.2' : '1')};
 `;
 
 interface Message {
@@ -348,7 +357,7 @@ const Chat: React.FC = () => {
           ref={userInputRef}
         />
         <Control>
-          <Button onClick={handleRecord}>
+          <Button onClick={handleRecord} isActive={listening}>
             <MicroButtonIcon />
           </Button>
           <Divider />
