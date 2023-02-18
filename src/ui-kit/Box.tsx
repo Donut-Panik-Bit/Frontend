@@ -4,7 +4,7 @@ import { Navigation } from './Navigation';
 
 const Wrapper = styled.div`
   display: flex;
-  background-color: #999999;
+  background-color: #fff;
   width: 100vw;
   height: 100vh;
   overflow: hidden;

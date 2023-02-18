@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { paths } from '../utils/pages'
 
 import { styled } from '../global-styles'
+import soundUrl from "../utils/sounds/please.mp3";
+import { useEffect, useState } from 'react';
 
 const Text = styled.div`
   border: 0;
@@ -14,10 +16,16 @@ const Text = styled.div`
   cursor: pointer;
   color: black;
 `
+function play() {
+  new Audio(soundUrl).play()
+}
 
 export const Dictaphone = () => {
     const navigate = useNavigate()
-    
+    const [value, setValue] = useState(0);
+    useEffect(() => {
+      play()
+    }, [value])
     //   type Icommand = {
     //     command: string,
     //     callback: ({ resetTranscript }: { resetTranscript: any; }) => any
@@ -31,11 +39,15 @@ export const Dictaphone = () => {
         const commands : IcommandOpen[]= [
             {
                 command:'посмотреть информацию',
-                callback: () => navigate(paths.info)
+                callback: () => {setValue(value+1); navigate(paths.info); }
             },
             {
                 command:'посмотреть главную',
-                callback: () => navigate(paths.home)
+                callback: () => (setValue(value+1))
+            },
+            {
+              command:'медиа',
+              callback: () => navigate(paths.media)
             }
         ]
 
