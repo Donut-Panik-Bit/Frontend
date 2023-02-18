@@ -9,7 +9,8 @@ export const theme = {
       main_text: '#2E2F33',
       sub_text: '#595D67',
       sub_sub_text: '#82858D',
-      border_color: '#DDE2E5'
+      border_color: '#DDE2E5',
+      menu_color: '#F8F9FA'
     },
     fontFamily: {
       roboto: 'Roboto',

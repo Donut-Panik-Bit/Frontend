@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 import { styled, theme } from '../global-styles'
 import { Home } from "../pages/Home"
@@ -10,7 +10,7 @@ const Sidebar = styled.div`
   padding: 0;
   height: 100%;
   width: 323px;
-  background-color: white;
+  background-color: ${theme.palette.menu_color};
 `
 
 const ItemBar = styled.div<{ isActive: boolean }>`
@@ -24,7 +24,7 @@ const ItemBar = styled.div<{ isActive: boolean }>`
   border-top: 1px solid ${theme.palette.border_color};
 
   background-color: ${({ isActive }) =>
-    isActive ? `${theme.palette.main}` : 'white'};
+    isActive ? `${theme.palette.main}` : `${theme.palette.menu_color}`};
 
   transition: background ${theme.transition.hover}ms;
 
@@ -42,7 +42,7 @@ const Header = styled.div`
   padding: 0 24px;
   border-top: 1px solid ${theme.palette.border_color};
 
-  background-color: ${theme.palette.white};
+  background-color: ${theme.palette.menu_color};
 `
 
 const ProgresBox = styled.div`
@@ -55,7 +55,7 @@ const ProgresBox = styled.div`
   padding: 0 24px;
   border-top: 1px solid ${theme.palette.border_color};
 
-  background-color: ${theme.palette.white};
+  background-color: ${theme.palette.menu_color};
 `
 
 const ProgressText = styled.div`
@@ -163,13 +163,12 @@ const StyledNavLink = styled(NavLink)`
 
 export const Navigation = () => {
   const [panelBarIdx, setPanelBarIdx] = useState(0)
-
     return (
       <div>
         <Sidebar>
           <Header><TextHeader>Разделы</TextHeader></Header>
           {items.map((el, i) => (
-            <StyledNavLink to={el.path}  >
+            <StyledNavLink to={el.path}>
             <ItemBar
               isActive={i === panelBarIdx}
               onClick={() => setPanelBarIdx(i)}
