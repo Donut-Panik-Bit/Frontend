@@ -206,7 +206,7 @@ const Button = styled.button<{
   svg {
     height: 20px;
     width: 20px;
-    scale: ${(props) => (props.isActive ? '1.1' : '1')};
+    scale: ${(props) => (props.isActive ? '1.10' : '1')};
   }
 `;
 
@@ -269,7 +269,6 @@ const Chat: React.FC = () => {
 
   useEffect(() => {
     const ws = new WebSocket('ws://92.63.102.121/v1/ws/1');
-    ws.onopen = () => console.log('open');
     ws.onmessage = (e) => {
       setMessages((prev) => [
         ...prev,
@@ -279,7 +278,6 @@ const Chat: React.FC = () => {
         },
       ]);
     };
-    ws.onclose = () => console.log('close');
     setWs(ws);
     userInputRef?.current?.focus();
   }, [setMessages]);
@@ -363,7 +361,11 @@ const Chat: React.FC = () => {
           ref={userInputRef}
         />
         <Control>
-          <Button onClick={handleButtonClick} type={'submit'}>
+          <Button
+            onClick={handleButtonClick}
+            type={'submit'}
+            isActive={!userMessage && listening}
+          >
             {userMessage ? <SendButtonIcon /> : <MicroButtonIcon />}
           </Button>
         </Control>
