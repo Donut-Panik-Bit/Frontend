@@ -12,7 +12,7 @@ const Text = styled.div`
   color: black;
 `
 
-const _Common: FC = () => {
+const _Expenses: FC = () => {
     return (
         <Box>
             <Text>Общее</Text>
@@ -20,4 +20,4 @@ const _Common: FC = () => {
     )
   }
 
-  export const Common = memo(_Common);
+  export const Expenses = memo(_Expenses);

@@ -1,0 +1,1 @@
+import { ReactComponent as please } from './please.mp3';

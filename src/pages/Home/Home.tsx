@@ -1,12 +1,12 @@
-import { FC, memo, useContext } from "react";
+import { FC, memo } from "react";
+
 import { Button } from "../../ui-kit/Button";
 import { paths } from '../../utils/pages'
-import { AuthContext } from '../../shared/context/context'
 import { styled } from '../../global-styles'
 import { Dictaphone } from "../../ui-kit/Dictaphone";
-import { MainBox } from "../../ui-kit/MainBox";
 import { Box } from "../../ui-kit/Box"
-import { Navigation } from "../../ui-kit/Navigation";
+import { BoxContent } from "../../ui-kit/BoxContent/BoxContent";
+import { BoopButton } from "../../utils/TextButton"
 
 const Text = styled.div`
   border: 0;
@@ -25,9 +25,10 @@ const Text = styled.div`
 const _Home: FC = () => {
   return (
       <Box>
+        <BoxContent header={"Новый проект"}></BoxContent>
           <Button type="button" href={paths.login}>{'кнопка'}</Button>
           <Dictaphone></Dictaphone>
-          <Text>Новый проект</Text>
+          <BoopButton />
       </Box>
   )
 }
