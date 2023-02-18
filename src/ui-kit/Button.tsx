@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 
 import { styled } from '../global-styles'
 
-
-
 const ResetButton = styled.button`
   border: 0;
   outline: 0;

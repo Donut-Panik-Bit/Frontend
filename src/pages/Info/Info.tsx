@@ -3,6 +3,7 @@ import { FC } from "react";
 import { Dictaphone } from "../../ui-kit/Dictaphone";
 
 import { styled } from '../../global-styles'
+import { Box } from "../../ui-kit/Box";
 
 const Text = styled.div`
   border: 0;
@@ -16,9 +17,9 @@ const Text = styled.div`
 
 export const Info: FC = () => {
   return (
-    <div>
-      <Text>Information</Text>
-      <Dictaphone />
-    </div>
+    <Box>
+        <Dictaphone></Dictaphone>
+        <Text>Информация</Text>
+    </Box>
   )
 }
