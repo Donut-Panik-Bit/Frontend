@@ -23,7 +23,8 @@ export const theme = {
     },
     fontFamily: {
       roboto: 'Roboto',
-      montserrat: 'Montserrat'
+      montserrat: 'Montserrat',
+      pt: 'PT Root UI'
     },
     transition: {
       hover: 200,

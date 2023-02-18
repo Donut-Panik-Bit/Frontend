@@ -60,3 +60,10 @@
     font-display: swap;
     font-weight: 900;
   }
+
+  @font-face {
+    font-family: 'PT Root UI';
+    src: url('../../public/fonts/pt-root-ui_regular.woff') format('truetype');
+    font-display: swap;
+    font-weight: 700;
+  }
