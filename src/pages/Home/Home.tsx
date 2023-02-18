@@ -1,8 +1,7 @@
-import { FC, memo, useCallback, useState } from "react";
+import { FC, memo } from "react";
 
 import { Button } from "../../ui-kit/Button";
 import { paths } from '../../utils/pages'
-import { styled, theme } from '../../global-styles'
 import { Dictaphone } from "../../ui-kit/Dictaphone";
 import { Box } from "../../ui-kit/Box"
 import { BoxContent } from "../../ui-kit/BoxContent/BoxContent";

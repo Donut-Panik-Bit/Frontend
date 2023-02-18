@@ -1,8 +1,7 @@
-import { useState } from "react"
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
+import { css } from "styled-components"
 
 import { styled, theme } from '../global-styles'
-import { Home } from "../pages/Home"
 import { paths } from '../utils/pages'
 
 const Sidebar = styled.div`
@@ -10,28 +9,9 @@ const Sidebar = styled.div`
   padding: 0;
   border: 0;
   outline: 0;
+  position: sticky;
   width: 323px;
   background-color: ${theme.palette.menu_color};
-`
-
-const ItemBar = styled.div<{ isActive: boolean }>`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  
-  height: 64px;
-  gap: 8px;
-  padding: 0 24px;
-  border-top: 1px solid ${theme.palette.border_color};
-
-  background-color: ${({ isActive }) =>
-    isActive ? `${theme.palette.main}` : `${theme.palette.menu_color}`};
-
-  transition: background ${theme.transition.hover}ms;
-
-  &:hover {
-    background-color: ${theme.palette.main};
-  }
 `
 
 const Header = styled.div`
@@ -91,6 +71,7 @@ const Text = styled.div`
   outline: 0;
   padding: 0;
   margin: 0;
+  z-index: 100;
 
   background-color: transparent;
   color:  ${theme.palette.main_text};
@@ -153,8 +134,41 @@ const items = [
   }
 ]
 
-const StyledNavLink = styled(NavLink)`
-    text-decoration: none;
+const StyledNavLink = styled(NavLink)<{ active: boolean }>`
+  background-color: ${theme.palette.menu_color};
+  position: relative;
+  text-decoration: none;
+  transition: color 0.2s linear;
+
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  
+  height: 64px;
+  gap: 8px;
+  padding: 0 24px;
+  border-top: 1px solid ${theme.palette.border_color};
+
+  &:hover {
+    background-color: ${theme.palette.main};
+  }
+
+  ${({ active }) =>
+    active &&
+    css`
+      &::after {
+        content: '';
+        position: absolute;
+        background-color: ${theme.palette.main};
+        width: 100%;
+        height: 64px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        border-radius: 4px;
+        border-bottom: 4px solid ${theme.palette.main};
+      }
+    `}
 
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
@@ -162,21 +176,16 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 export const Navigation = () => {
-  const [panelBarIdx, setPanelBarIdx] = useState(0)
+  const location = useLocation()
+
     return (
         <Sidebar>
           <Header><TextHeader>Разделы</TextHeader></Header>
           {items.map((el, i) => (
-            <StyledNavLink to={el.path}>
-            <ItemBar
-              isActive={i === panelBarIdx}
-              onClick={() => setPanelBarIdx(i)}
-              key={i}
-            >
+            <StyledNavLink to={el.path} active={location.pathname === el.path} key={i}>
               <Text>
                 {el.label}
               </Text>
-            </ItemBar>
             </StyledNavLink>
           ))}
           <ProgresBox>
