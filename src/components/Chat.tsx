@@ -270,11 +270,7 @@ const Chat: React.FC = () => {
   }, [isOpen]);
 
   useEffect(() => {
-    if (transcript === '') {
-      setUserMessage(transcript);
-    } else {
-      setUserMessage((prev) => prev + transcript);
-    }
+    setUserMessage(transcript);
   }, [transcript]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
