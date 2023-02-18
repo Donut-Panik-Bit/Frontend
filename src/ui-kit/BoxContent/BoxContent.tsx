@@ -3,6 +3,7 @@ import { styled, theme } from '../../global-styles'
 import arrow from '../../global-styles/icons/ar.svg'
 
 const Wrapper = styled.div`
+  position: sticky;
   display: flex;
   background-color: ${theme.palette.white};
   overflow: hidden;

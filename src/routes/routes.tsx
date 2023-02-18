@@ -7,6 +7,10 @@ import { About } from '../pages/About'
 import { Calendar } from '../pages/Calendar'
 import { Results } from '../pages/Results'
 import { Team } from '../pages/Team'
+import { Expenses } from '../pages/Expenses'
+import { Media } from '../pages/Media'
+import { Files } from '../pages/Files'
+import { Finance } from '../pages/Finance'
 
 export const RootRouter: React.FC = (): JSX.Element => {
   const routes = useRoutes([
@@ -36,19 +40,19 @@ export const RootRouter: React.FC = (): JSX.Element => {
     },
     {
       path: paths.expenses,
-      element: <Team />
+      element: <Expenses />
     },
     {
       path: paths.finance,
-      element: <Team />
+      element: <Finance />
     },
     {
       path: paths.media,
-      element: <Team />
+      element: <Media />
     },
     {
       path: paths.files,
-      element: <Team />
+      element: <Files />
     },
   ])
   return <>{routes}</>

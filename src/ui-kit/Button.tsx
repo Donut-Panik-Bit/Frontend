@@ -1,19 +1,21 @@
 import React, { PropsWithChildren } from 'react'
 import { Link } from 'react-router-dom'
 
-import { styled } from '../global-styles'
+import { styled, theme } from '../global-styles'
 
 const ResetButton = styled.button`
   border: 0;
   outline: 0;
   padding: 0;
-  margin: 0;
-  background-color: transparent;
+  margin-left: 20px;
   cursor: pointer;
-  background-color: aquamarine;
-  height: 30px;
-  width: 100px;
-  font-family: 'Montserrat';
+  background-color: ${theme.palette.main};
+  height: 48px;
+  width: 182px;
+  border-radius: 4px;
+  color: ${theme.palette.white};
+  font-size: 12px;
+  font-weight: 700;
 `
 
 export type ButtonProps = {
