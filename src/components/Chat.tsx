@@ -215,7 +215,21 @@ interface Message {
 const Chat: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [userMessage, setUserMessage] = useState<string>('');
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      isIncome: true,
+      value: 'Привет, я - Гранат!',
+    },
+    {
+      isIncome: true,
+      value:
+        'Буду твоим личным помощником в разработке грантовой заявки для твоей идеи. Буду помогать тебе во время работы с разными разделами платформы.',
+    },
+    {
+      isIncome: true,
+      value: 'Будут вопросы - обращайся!',
+    },
+  ]);
   const [ws, setWs] = useState<WebSocket | null>(null);
 
   const userInputRef = useRef<HTMLInputElement>(null);
