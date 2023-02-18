@@ -8,7 +8,8 @@ import { paths } from '../utils/pages'
 const Sidebar = styled.div`
   margin: 0;
   padding: 0;
-  height: 100%;
+  border: 0;
+  outline: 0;
   width: 323px;
   background-color: ${theme.palette.menu_color};
 `
@@ -40,7 +41,6 @@ const Header = styled.div`
   height: 88px;
   gap: 8px;
   padding: 0 24px;
-  border-top: 1px solid ${theme.palette.border_color};
 
   background-color: ${theme.palette.menu_color};
 `
@@ -164,7 +164,6 @@ const StyledNavLink = styled(NavLink)`
 export const Navigation = () => {
   const [panelBarIdx, setPanelBarIdx] = useState(0)
     return (
-      <div>
         <Sidebar>
           <Header><TextHeader>Разделы</TextHeader></Header>
           {items.map((el, i) => (
@@ -185,6 +184,5 @@ export const Navigation = () => {
             <Progress max={100} value={70}></Progress>
           </ProgresBox>
         </Sidebar>
-      </div>
     )
 }

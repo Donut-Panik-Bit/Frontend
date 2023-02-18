@@ -13,6 +13,10 @@ const Wrapper = styled.div`
 `
 const Content = styled.div`
   width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  margin: 0;
 `
 
 interface Props extends PropsWithChildren {
