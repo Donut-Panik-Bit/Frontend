@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   display: flex;
   background-color: ${theme.palette.white};
   overflow: hidden;
+  flex-direction: column;
 `
 
 const ContentTextWrapper = styled.div`
@@ -39,7 +40,7 @@ export type BoxProps = {
   header: string
 }
 
-export const BoxContent: FC<PropsWithChildren<BoxProps>> = ({ header }) => (
+export const BoxContent: FC<PropsWithChildren<BoxProps>> = ({ children, header }) => (
   <Wrapper>
     <ContentTextWrapper>
       <StyledIcon src={arrow} />
@@ -47,5 +48,6 @@ export const BoxContent: FC<PropsWithChildren<BoxProps>> = ({ header }) => (
         {header}
       </ContentText>
     </ContentTextWrapper>
+    {children}
   </Wrapper>
 );
