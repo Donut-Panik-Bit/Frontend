@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import soundUrl from "./sounds/please.mp3";
+import soundUrl from "./sounds/hi.mp3";
 
 function play() {
   new Audio(soundUrl).play()
@@ -10,5 +10,5 @@ export const BoopButton = () => {
     useEffect(() => {
       play()
     }, [value])
-    return <button onClick={() => setValue(value+1)}>Boop!</button>;
+    return <button onClick={() => setValue(1)}>Boop!</button>;
   };

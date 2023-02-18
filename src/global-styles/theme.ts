@@ -125,6 +125,9 @@ export const theme = {
         fontSize: '10px',
         lineHeight: '16px',
         fontWeight: '300'
+      },
+      height1: {
+        height: '116px',
       }
     }
   }

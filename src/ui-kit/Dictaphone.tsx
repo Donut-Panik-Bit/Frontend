@@ -5,6 +5,8 @@ import { paths } from '../utils/pages'
 
 import { styled } from '../global-styles'
 import soundUrl from "../utils/sounds/please.mp3";
+import soundFind from "../utils/sounds/find.mp3";
+import soundHi from "../utils/sounds/hi.mp3";
 import { useEffect, useState } from 'react';
 
 const Text = styled.div`
@@ -16,15 +18,22 @@ const Text = styled.div`
   cursor: pointer;
   color: black;
 `
-function play() {
-  new Audio(soundUrl).play()
+function play(sound : any) {
+  new Audio(sound).play()
 }
 
 export const Dictaphone = () => {
     const navigate = useNavigate()
     const [value, setValue] = useState(0);
     useEffect(() => {
-      play()
+      console.log(value)
+      if (value === 2){
+        play(soundFind)
+        navigate(paths.info);
+      }
+      if (value === 1){
+        play(soundHi)
+      }
     }, [value])
     //   type Icommand = {
     //     command: string,
@@ -38,12 +47,12 @@ export const Dictaphone = () => {
 
         const commands : IcommandOpen[]= [
             {
-                command:'посмотреть информацию',
-                callback: () => {setValue(value+1); navigate(paths.info); }
+                command:'информация',
+                callback: () => {setValue(2) }
             },
             {
-                command:'посмотреть главную',
-                callback: () => (setValue(value+1))
+                command:'привет',
+                callback: () => (setValue(1))
             },
             {
               command:'медиа',
