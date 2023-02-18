@@ -5,6 +5,7 @@ import { paths } from '../utils/pages'
 
 import { styled } from '../global-styles'
 import soundUrl from "../utils/sounds/please.mp3";
+import soundFind from "../utils/sounds/find.mp3";
 import { useEffect, useState } from 'react';
 
 const Text = styled.div`
@@ -17,7 +18,7 @@ const Text = styled.div`
   color: black;
 `
 function play() {
-  new Audio(soundUrl).play()
+  new Audio(soundFind).play()
 }
 
 export const Dictaphone = () => {
