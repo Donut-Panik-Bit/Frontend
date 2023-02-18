@@ -17,7 +17,7 @@ import SpeechRecognition, {
 } from 'react-speech-recognition';
 
 const GranatButton = styled.button`
-  position: absolute;
+  position: fixed;
   bottom: 50px;
   right: 50px;
   border-radius: 50%;
@@ -164,29 +164,29 @@ const Control = styled.div`
   position: relative;
   margin-left: 16px;
 
-  &:after {
-    content: '';
-    display: block;
-    width: 50%;
-    height: 100%;
-    position: absolute;
-    background-color: #faa419;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+  //&:after {
+  //  content: '';
+  //  display: block;
+  //  width: 50%;
+  //  height: 100%;
+  //  position: absolute;
+  //  background-color: #faa419;
+  //  left: 50%;
+  //  transform: translateX(-50%);
+  //}
 `;
 
-const Divider = styled.div`
-  position: absolute;
-  z-index: 10;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 2px;
-  height: 70%;
-  background-color: #dc762b;
-  border-radius: 20px;
-`;
+// const Divider = styled.div`
+//   position: absolute;
+//   z-index: 10;
+//   left: 50%;
+//   top: 50%;
+//   transform: translate(-50%, -50%);
+//   width: 2px;
+//   height: 70%;
+//   background-color: #dc762b;
+//   border-radius: 20px;
+// `;
 
 const Button = styled.button<{
   isActive?: boolean;
@@ -241,8 +241,9 @@ const Chat: React.FC = () => {
   ]);
   const [ws, setWs] = useState<WebSocket | null>(null);
 
-  const userInputRef = useRef<HTMLInputElement>(null);
+  const chatRef = useRef<HTMLDivElement>(null);
   const messageRef = useRef<HTMLDivElement>(null);
+  const userInputRef = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
 
@@ -262,12 +263,9 @@ const Chat: React.FC = () => {
     },
   ];
 
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition({ commands });
+  const { transcript, listening, resetTranscript } = useSpeechRecognition({
+    commands,
+  });
 
   useEffect(() => {
     const ws = new WebSocket('ws://92.63.102.121/v1/ws/1');
@@ -297,10 +295,10 @@ const Chat: React.FC = () => {
   }, [transcript]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    SpeechRecognition.stopListening();
     event.preventDefault();
     if (!userMessage) return;
     if (ws) {
-      console.log('sending');
       ws.send(userMessage);
     }
     setMessages((prev) => [
@@ -321,23 +319,28 @@ const Chat: React.FC = () => {
     }
   }, [messages]);
 
-  const handleRecord = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    if (!listening) {
-      resetTranscript();
-      SpeechRecognition.startListening({ continuous: true, language: 'ru-RU' });
-    } else {
-      SpeechRecognition.stopListening();
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (!userMessage) {
+      event.preventDefault();
+      if (!listening) {
+        resetTranscript();
+        SpeechRecognition.startListening({
+          continuous: true,
+          language: 'ru-RU',
+        });
+      } else {
+        SpeechRecognition.stopListening();
+      }
     }
   };
 
   return isOpen ? (
-    <StyledChat>
+    <StyledChat ref={chatRef}>
       <Header>
         <Heading>Помощник Гранат</Heading>
         <CloseButton onClick={() => setIsOpen(false)} />
       </Header>
-      <Messages ref={messageRef}>
+      <Messages>
         {messages.map((message, index) =>
           message.isIncome ? (
             <IncomingMessage key={message.value + index}>
@@ -353,16 +356,15 @@ const Chat: React.FC = () => {
       <Footer onSubmit={handleSubmit}>
         <MessageInput
           value={userMessage}
-          onChange={(e) => setUserMessage(e.target.value)}
+          onChange={(e) => {
+            setUserMessage(e.target.value);
+            SpeechRecognition.stopListening();
+          }}
           ref={userInputRef}
         />
         <Control>
-          <Button onClick={handleRecord} isActive={listening}>
-            <MicroButtonIcon />
-          </Button>
-          <Divider />
-          <Button type={'submit'}>
-            <SendButtonIcon />
+          <Button onClick={handleButtonClick} type={'submit'}>
+            {userMessage ? <SendButtonIcon /> : <MicroButtonIcon />}
           </Button>
         </Control>
       </Footer>
