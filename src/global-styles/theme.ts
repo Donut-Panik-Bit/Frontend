@@ -55,8 +55,8 @@ export const theme = {
         fontWeight: '600'
       },
       h4: {
-        fontSize: '32px',
-        lineHeight: '39px',
+        fontSize: '38px',
+        lineHeight: '46px',
         fontWeight: '700'
       },
       h5: {
