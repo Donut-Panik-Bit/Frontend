@@ -9,7 +9,6 @@ import { ReactComponent as Granat } from '../assets/svg/Granat.svg';
 import { ReactComponent as GranatRightLeg } from '../assets/svg/Granat-right-leg.svg';
 import { ReactComponent as GranatLeftLeg } from '../assets/svg/Granat-left-leg.svg';
 import { ReactComponent as GranatLogo } from '../assets/svg/Granat-button.svg';
-import useWebSocket, { ReadyState } from 'react-use-websocket';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../utils/pages';
 import SpeechRecognition, {
