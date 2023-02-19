@@ -289,7 +289,6 @@ const Chat: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log(1);
     if (messageRef.current) {
       messageRef.current.scrollTop = messageRef.current.scrollHeight;
     }
