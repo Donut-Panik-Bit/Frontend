@@ -1,6 +1,6 @@
-import { FC, memo } from 'react'
+import { FC, memo } from 'react';
 
-import { getStyles, styled, theme } from '../global-styles'
+import { getStyles, styled, theme } from '../global-styles';
 
 const Text = styled.div`
   border: 0;
@@ -9,22 +9,22 @@ const Text = styled.div`
   margin: 0;
   background-color: transparent;
   color: black;
-`
+`;
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 const StyledText = styled(Text)`
   width: 180px;
-`
+`;
 
 const Input = styled.textarea`
   display: inline-flex;
   align-self: start;
   border-radius: 4px;
-  border: 1px solid #ACB5BD;
+  border: 1px solid #acb5bd;
   width: 100%;
   min-height: 32px;
   padding: 8px 16px 8px 16px;
@@ -46,27 +46,21 @@ const Input = styled.textarea`
   &:target {
     border: 1px solid ${theme.palette.grayDark};
   }
-`
+`;
 type InputProps = {
-  value?: string
-  label?: string
-  placeholder?: string
-  onChange?: (text: string) => void
-}
+  value?: string;
+  label?: string;
+  placeholder?: string;
+  onChange?: (text: string) => void;
+};
 
-const _InputField: FC<InputProps> = ({
-  label,
-  placeholder,
-}) => {
-
+const _InputField: FC<InputProps> = ({ label, placeholder, value }) => {
   return (
     <Wrapper>
       {label && <StyledText>{label}</StyledText>}
-      <Input
-        placeholder={placeholder}
-      />
+      <Input placeholder={placeholder} value={value} />
     </Wrapper>
-  )
-}
+  );
+};
 
-export const InputField = memo(_InputField)
+export const InputField = memo(_InputField);
