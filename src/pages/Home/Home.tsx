@@ -6,20 +6,12 @@ import { BoxContent } from '../../ui-kit/BoxContent/BoxContent';
 import { InputField } from '../../ui-kit/InputField';
 import { Info } from '../../ui-kit/Info';
 
-<<<<<<< HEAD
 import { styled, theme } from '../../global-styles'
 import { WrapperButtons } from "../../ui-kit/WrapperButtons";
 import { Modal } from "../../ui-kit/Modal";
 import { ModalInfo } from "../../ui-kit/ModalInfo";
 import better from "../../utils/sounds/better.mp3";
 import Dictaphone from "../../ui-kit/Dictaphone";
-=======
-import { styled, theme } from '../../global-styles';
-import { WrapperButtons } from '../../ui-kit/WrapperButtons';
-import { Modal } from '../../ui-kit/Modal';
-import { ModalInfo } from '../../ui-kit/ModalInfo';
-import better from '../../utils/sounds/better.mp3';
->>>>>>> 602c40c59845336791ce35e7619f32e26b26e389
 
 const StyledButton = styled(Button)`
   background-color: ${theme.palette.white};
@@ -33,8 +25,6 @@ function play(sound: any) {
 
 const _Home: FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  // const [name, setName] = useState('')
-  // const [region, setRegion] = useState('')
 
   const isModalOpen = (isOpen: boolean) => {
     setModalOpen(isOpen);
@@ -59,10 +49,8 @@ const _Home: FC = () => {
         />
         <InputField placeholder="Название проекта" />
 
-<<<<<<< HEAD
           <InputField
             placeholder="Регион реализации проекта"
-            value={region}
           />
           <WrapperButtons>
             <Dictaphone />
@@ -76,29 +64,5 @@ const _Home: FC = () => {
       </Box>
   )
 }
-=======
-        <InputField placeholder="Регион реализации проекта" />
-        <WrapperButtons>
-          <StyledButton type="button">{'СОЗДАТЬ ЧЕРНОВИК'}</StyledButton>
-          <Button
-            type="button"
-            onClick={() => {
-              {
-                isModalOpen(true);
-                setValue(1);
-              }
-            }}
-          >
-            {'СОЗДАТЬ ПРОЕКТ'}
-          </Button>
-        </WrapperButtons>
-      </BoxContent>
-      <Modal isVisible={modalOpen} onOverlayClick={() => isModalOpen(false)}>
-        <ModalInfo isVisible={setModalOpen}>{'Знаю как улучшить!'}</ModalInfo>
-      </Modal>
-    </Box>
-  );
-};
->>>>>>> 602c40c59845336791ce35e7619f32e26b26e389
 
 export const Home = memo(_Home);
