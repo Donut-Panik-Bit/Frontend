@@ -54,11 +54,20 @@ type InputProps = {
   onChange?: (text: string) => void;
 };
 
-const _InputField: FC<InputProps> = ({ label, placeholder, value }) => {
+const _InputField: FC<InputProps> = ({
+  label,
+  placeholder,
+  value,
+  onChange,
+}) => {
   return (
     <Wrapper>
       {label && <StyledText>{label}</StyledText>}
-      <Input placeholder={placeholder} value={value} />
+      <Input
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => (onChange ? onChange(e.target.value) : () => {})}
+      />
     </Wrapper>
   );
 };
