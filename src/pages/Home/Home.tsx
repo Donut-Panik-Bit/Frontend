@@ -1,4 +1,4 @@
-import { FC, memo, useState } from "react";
+import { FC, memo, useEffect, useState } from "react";
 
 import { Button } from "../../ui-kit/Button";
 import { Box } from "../../ui-kit/Box"
@@ -10,12 +10,17 @@ import { styled, theme } from '../../global-styles'
 import { WrapperButtons } from "../../ui-kit/WrapperButtons";
 import { Modal } from "../../ui-kit/Modal";
 import { ModalInfo } from "../../ui-kit/ModalInfo";
+import better from "../../utils/sounds/better.mp3";
 
 const StyledButton = styled(Button)`
   background-color: ${theme.palette.white};
   color: ${theme.palette.main};
   border: 1px solid ${theme.palette.main};
 `
+
+function play(sound : any) {
+  new Audio(sound).play()
+}
 
 const _Home: FC = () => {
   const [modalOpen, setModalOpen] = useState(false)
@@ -25,6 +30,14 @@ const _Home: FC = () => {
   const isModalOpen = (isOpen: boolean) => {
     setModalOpen(isOpen)
   }
+
+  const [value, setValue] = useState(0);
+    useEffect(() => {
+      console.log(value)
+      if (value === 1){
+        play(better)
+      }
+    }, [value])
 
   return (
       <Box>
@@ -41,7 +54,7 @@ const _Home: FC = () => {
           />
           <WrapperButtons>
             <StyledButton type="button">{'СОЗДАТЬ ЧЕРНОВИК'}</StyledButton>
-            <Button type="button" onClick={() => isModalOpen(true)}>{'СОЗДАТЬ ПРОЕКТ'}</Button>
+            <Button type="button" onClick={() => {{isModalOpen(true); setValue(1)}}}>{'СОЗДАТЬ ПРОЕКТ'}</Button>
             
           </WrapperButtons>
         </BoxContent>

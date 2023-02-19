@@ -2,9 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Реализованный функционал
 
-In the project directory, you can run:
+1. Голосовой помощник (отвечает на часто задаваемые вопросы)
+2. 
 
 ### `npm start`
 
