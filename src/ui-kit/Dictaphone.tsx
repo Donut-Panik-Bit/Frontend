@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom'
 
 import { paths } from '../utils/pages'
 
-import { styled } from '../global-styles'
+import { styled, theme } from '../global-styles'
 import soundUrl from "../utils/sounds/please.mp3";
 import soundFind from "../utils/sounds/find.mp3";
 import soundHi from "../utils/sounds/hi.mp3";
 import { useEffect, useState } from 'react';
+import { Button } from './Button';
 
 const Text = styled.div`
   border: 0;
@@ -47,7 +48,7 @@ export const Dictaphone = () => {
 
         const commands : IcommandOpen[]= [
             {
-                command:'информация',
+                command:'покажи информацию',
                 callback: () => {setValue(2) }
             },
             {
@@ -55,7 +56,7 @@ export const Dictaphone = () => {
                 callback: () => (setValue(1))
             },
             {
-              command:'медиа',
+              command:'покажи медиа',
               callback: () => navigate(paths.media)
             }
         ]
@@ -72,13 +73,29 @@ export const Dictaphone = () => {
     return <Text>Browser doesn't support speech recognition.</Text>;
   }
 
+  const StyledButton = styled(Button)`
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  background-color: ${theme.palette.main};
+`
+
+const StyledButtonStop = styled(StyledButton)`
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  background-color: ${theme.palette.grayDark};
+`
+
   return (
     <div>
-      <span>Microphone: {listening ? 'on' : 'off'}</span>
-      <button onClick={(e: any) => SpeechRecognition.startListening({continuous: true, language: 'ru-RU'})}>Start</button>
-      <button onClick={SpeechRecognition.stopListening}>Stop</button>
-      <button onClick={resetTranscript}>Reset</button>
-      <Text>{transcript}</Text>
+      <StyledButton onClick={(e: any) => SpeechRecognition.startListening({continuous: true, language: 'ru-RU'})}>
+
+      </StyledButton>
+
+      <StyledButtonStop onClick={SpeechRecognition.stopListening}>
+        
+      </StyledButtonStop>
     </div>
   );
 };

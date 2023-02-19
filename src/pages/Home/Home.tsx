@@ -11,6 +11,7 @@ import { WrapperButtons } from "../../ui-kit/WrapperButtons";
 import { Modal } from "../../ui-kit/Modal";
 import { ModalInfo } from "../../ui-kit/ModalInfo";
 import better from "../../utils/sounds/better.mp3";
+import Dictaphone from "../../ui-kit/Dictaphone";
 
 const StyledButton = styled(Button)`
   background-color: ${theme.palette.white};
@@ -53,9 +54,9 @@ const _Home: FC = () => {
             value={region}
           />
           <WrapperButtons>
+            <Dictaphone />
             <StyledButton type="button">{'СОЗДАТЬ ЧЕРНОВИК'}</StyledButton>
             <Button type="button" onClick={() => {{isModalOpen(true); setValue(1)}}}>{'СОЗДАТЬ ПРОЕКТ'}</Button>
-            
           </WrapperButtons>
         </BoxContent>
         <Modal isVisible={modalOpen} onOverlayClick={() => isModalOpen(false)}>
