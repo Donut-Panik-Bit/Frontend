@@ -9,11 +9,12 @@ import { Button } from "../ui-kit/Button";
 import { Modal } from "../ui-kit/Modal";
 import { ModalInfo } from "../ui-kit/ModalInfo";
 
+
 const StyledButton = styled(Button)`
   background-color: ${theme.palette.white};
   color: ${theme.palette.main};
   border: 1px solid ${theme.palette.main};
-`
+`;
 
 const _About: FC = () => {
   const [modalOpen, setModalOpen] = useState(false)
@@ -48,5 +49,5 @@ const _About: FC = () => {
       </Box>
     )
   }
-
-  export const About = memo(_About);
+  
+export const About = memo(_About);

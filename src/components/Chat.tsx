@@ -163,30 +163,7 @@ const Control = styled.div`
   display: flex;
   position: relative;
   margin-left: 16px;
-
-  //&:after {
-  //  content: '';
-  //  display: block;
-  //  width: 50%;
-  //  height: 100%;
-  //  position: absolute;
-  //  background-color: #faa419;
-  //  left: 50%;
-  //  transform: translateX(-50%);
-  //}
 `;
-
-// const Divider = styled.div`
-//   position: absolute;
-//   z-index: 10;
-//   left: 50%;
-//   top: 50%;
-//   transform: translate(-50%, -50%);
-//   width: 2px;
-//   height: 70%;
-//   background-color: #dc762b;
-//   border-radius: 20px;
-// `;
 
 const Button = styled.button<{
   isActive?: boolean;
@@ -312,6 +289,7 @@ const Chat: React.FC = () => {
   };
 
   useEffect(() => {
+    console.log(1);
     if (messageRef.current) {
       messageRef.current.scrollTop = messageRef.current.scrollHeight;
     }
@@ -338,7 +316,7 @@ const Chat: React.FC = () => {
         <Heading>Помощник Гранат</Heading>
         <CloseButton onClick={() => setIsOpen(false)} />
       </Header>
-      <Messages>
+      <Messages ref={messageRef}>
         {messages.map((message, index) =>
           message.isIncome ? (
             <IncomingMessage key={message.value + index}>
